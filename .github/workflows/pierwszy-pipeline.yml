@@ -3,6 +3,11 @@ name: Pierwszy pipeline
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  PROJEKT: "devops-pipeline"
 
 jobs:
   build:
@@ -14,3 +19,26 @@ jobs:
 
       - name: Wypisz wiadomość
         run: echo "Pipeline działa!"
+
+      - name: Sprawdz pliki
+        run: ls -la
+
+      - name: Sprawdz branch
+        run: echo "Branch $GITHUB_REF_NAME"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Pobierz kod
+        uses: actions/checkout@v3
+
+      - name: Sprawdz czy README istnieje
+        run: |
+          if [ -f README.md ]; then
+            echo "README istnieje - OK"
+          else
+            echo "Brak README!"
+            exit 1
+          fi
