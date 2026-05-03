@@ -1,0 +1,6 @@
+[
+  {"nazwa": "web-01", "aktywny": false},
+  {"nazwa": "web-02", "aktywny": true},
+  {"nazwa": "web-03", "aktywny": true},
+  {"nazwa": "web-04", "aktywny": false}
+]

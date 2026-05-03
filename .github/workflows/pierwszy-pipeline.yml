@@ -26,6 +26,17 @@ jobs:
       - name: Sprawdz branch
         run: echo "Branch $GITHUB_REF_NAME"
 
+  monitoring:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Pobierz kod
+        uses: actions/checkout@v3
+        
+      - name: Sprawdz kod
+        run: python3 monitoring.py
+
   test:
     runs-on: ubuntu-latest
     needs: build
