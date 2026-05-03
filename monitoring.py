@@ -18,4 +18,5 @@ with open("serwery.json", "r") as f:
 
 with open("raport.txt", "a") as r:
   for line in raport:
+    print(line)
     r.write(f"{line}  \n")
